@@ -1,6 +1,6 @@
 """
 При запуске обрабатывает все файлы из папки source_files.
-Результат помещает в папку out_files добавляя к имени файла "out_".
+Результат помещает в папку out_files.
 Пути к папкам можно задать в аргументах.
 """
 import run
@@ -31,7 +31,6 @@ def process(doc_PATH, out_PATH):
     files_to_process = []
     for f in doc_files:
         filename, file_extension = os.path.splitext(f)
-        # print(f, filename, file_extension)
         if not (('out_'+f) in out_files) or REDO:
             if file_extension in doc_type_list:
                 files_to_process.append(f)
@@ -40,10 +39,16 @@ def process(doc_PATH, out_PATH):
     for f in files_to_process:
         # Полные пути к файлам
         doc_file_name = os.path.join(doc_PATH, f)
+        img_file_name = os.path.join(out_PATH, f[:-4])
         out_file_name = os.path.join(out_PATH, 'out_' + f)
         # Вызов функции обработки
-        # _ = run.replace_in_pdf(doc_file_name, out_file_name)
-        _ = run.pdf_to_jpg(doc_file_name, out_file_name)
+        img_file_list = run.pdf_to_img(doc_file_name, img_file_name)
+        text_list = run.img_to_text(img_file_list)
+        _ = run.draw_boxes(img_file_list, text_list)
+        _ = run.img_to_pdf(img_file_list, out_file_name)
+        # Удалим уже не нужные картинки из папки out_PATH
+        for img_file in img_file_list:
+            os.remove(img_file)
 
     # Сообщаем сколько файлов обработали
     if len(files_to_process) == 0:
