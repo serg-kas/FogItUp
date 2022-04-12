@@ -17,7 +17,7 @@ from pytesseract import Output
 # При необходимости в Windows поправить путь к исполняемому файлу tesseract.exe
 if os.name.lower()[:3] == 'win':
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    print('Ищем tesseract здесь:'.format(pytesseract.pytesseract.tesseract_cmd))
+    print('Ищем tesseract здесь: {}'.format(pytesseract.pytesseract.tesseract_cmd))
 
 
 # Список символов, которые покрываем маской.
@@ -38,6 +38,7 @@ def pdf_to_img(doc_file_name, img_file_name):
 
 
 # Функция распознавания текста на изображении
+# TODO: Сделать предобработку картинки перед распознаванием
 def img_to_text(img_file_list):
     text_list = []
     for img_file in img_file_list:
