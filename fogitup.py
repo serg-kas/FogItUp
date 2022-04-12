@@ -1,3 +1,4 @@
+#!/home/serg/anaconda3/envs/py310/bin/python
 """
 При запуске обрабатывает все файлы из папки source_files.
 Результат помещает в папку out_files.
