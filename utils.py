@@ -15,7 +15,7 @@ from pytesseract import Output
 import pytesseract
 from pytesseract import Output
 # При необходимости в Windows поправить путь к исполняемому файлу tesseract.exe
-if os.name.lower()[:3] == 'win' or 'nt':
+if os.name.lower()[:3] == 'win' or os.name.lower()[:3] == 'nt':
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     print('Платформа {}, ищем tesseract здесь: {}'.format(os.name.lower()[:3], pytesseract.pytesseract.tesseract_cmd))
 
