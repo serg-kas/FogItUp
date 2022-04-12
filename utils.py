@@ -9,15 +9,15 @@ from pdf2image import convert_from_path
 
 import pytesseract
 from pytesseract import Output
-# Должен быть установлен сторонный пакет Tesseract-OCR
+# Должен быть установлен сторонний пакет Tesseract-OCR
 # Для Ubuntu: sudo apt install tesseract-ocr libtesseract-dev tesseract-ocr-rus
 # Для Windows Tesseract-OCR отсюда: https://github.com/UB-Mannheim/tesseract/wiki
 import pytesseract
 from pytesseract import Output
 # При необходимости в Windows поправить путь к исполняемому файлу tesseract.exe
-if os.name.lower()[:3] == 'win':
+if os.name.lower()[:3] == 'win' or 'nt':
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    print('Ищем tesseract здесь: {}'.format(pytesseract.pytesseract.tesseract_cmd))
+    print('Платформа {}, ищем tesseract здесь: {}'.format(os.name.lower()[:3], pytesseract.pytesseract.tesseract_cmd))
 
 
 # Список символов, которые покрываем маской.
