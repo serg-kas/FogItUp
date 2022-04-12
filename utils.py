@@ -1,16 +1,30 @@
-from pdf2image import convert_from_path
 from PIL import Image
+import cv2 as cv
+import os
+
+# Должен быть  установлен пакет poppler
+# Для Ubuntu: sudo apt install poppler-utils
+# Для Windows лучший вариант: conda install -c conda-forge poppler
+from pdf2image import convert_from_path
+
 import pytesseract
 from pytesseract import Output
-import cv2 as cv
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Должен быть установлен сторонный пакет Tesseract-OCR
+# Для Ubuntu: sudo apt install tesseract-ocr libtesseract-dev tesseract-ocr-rus
+# Для Windows Tesseract-OCR отсюда: https://github.com/UB-Mannheim/tesseract/wiki
+import pytesseract
+from pytesseract import Output
+# При необходимости в Windows поправить путь к исполняемому файлу tesseract.exe
+if os.name.lower()[:3] == 'win':
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    print('Ищем tesseract здесь:'.format(pytesseract.pytesseract.tesseract_cmd))
 
 
+# Список символов, которые покрываем маской.
 chars_mask_list = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 
 # Функция преобразования pdf в изображение
-# sudo apt get poppler-utils
 # https://www.geeksforgeeks.org/convert-pdf-to-image-using-python/
 def pdf_to_img(doc_file_name, img_file_name):
     #
@@ -24,9 +38,6 @@ def pdf_to_img(doc_file_name, img_file_name):
 
 
 # Функция распознавания текста на изображении
-# sudo apt install tesseract-ocr
-# sudo apt install libtesseract-dev
-# sudo apt install tesseract-ocr-rus
 def img_to_text(img_file_list):
     text_list = []
     for img_file in img_file_list:
@@ -72,7 +83,7 @@ def draw_boxes(img_file_list, text_list):
         cv.imwrite(img_file, curr_img)
 
 
-# Функция создания нового pdf с обработанными картинками внутри
+# Функция создания нового pdf из обработанных картинок
 def img_to_pdf(img_file_list, out_file_name):
     images = [Image.open(f) for f in img_file_list]
     print('Сохраняем результат: {}'.format(out_file_name))

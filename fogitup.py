@@ -3,7 +3,7 @@
 Результат помещает в папку out_files.
 Пути к папкам можно задать в аргументах.
 """
-import run
+import utils
 import os
 import sys
 # Обрабатывать файл повторно (если False, то пропускать)
@@ -42,10 +42,10 @@ def process(doc_PATH, out_PATH):
         img_file_name = os.path.join(out_PATH, f[:-4])
         out_file_name = os.path.join(out_PATH, 'out_' + f)
         # Вызов функции обработки
-        img_file_list = run.pdf_to_img(doc_file_name, img_file_name)
-        text_list = run.img_to_text(img_file_list)
-        _ = run.draw_boxes(img_file_list, text_list)
-        _ = run.img_to_pdf(img_file_list, out_file_name)
+        img_file_list = utils.pdf_to_img(doc_file_name, img_file_name)
+        text_list = utils.img_to_text(img_file_list)
+        _ = utils.draw_boxes(img_file_list, text_list)
+        _ = utils.img_to_pdf(img_file_list, out_file_name)
         # Удалим уже не нужные картинки из папки out_PATH
         for img_file in img_file_list:
             os.remove(img_file)
