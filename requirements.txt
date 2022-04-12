@@ -194,3 +194,7 @@ yarl=1.7.2=py310h6acc77f_1
 zipp=3.7.0=pyhd8ed1ab_1
 zlib=1.2.11=h36c2ea0_1013
 zstd=1.5.2=ha95c52a_0
+
+opencv-python~=4.5.5.64
+pdf2image~=1.16.0
+pillow~=9.0.1
