@@ -142,7 +142,7 @@ pycparser=2.21=pyhd3eb1b0_0
 pyjwt=2.4.0=pyhd8ed1ab_1
 pyopenssl=22.0.0=pyhd3eb1b0_0
 pyparsing=3.0.4=pyhd3eb1b0_0
-pypdf2=1.27.0=pyhd8ed1ab_0
+pypdf2=1.27.5=pyhd8ed1ab_0
 pysocks=1.7.1=py310h06a4308_0
 pytesseract=0.3.10=pyhd8ed1ab_0
 python=3.10.2=h85951f9_3_cpython
