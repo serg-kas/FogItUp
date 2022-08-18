@@ -7,8 +7,6 @@ import os
 # Для Windows лучший вариант: conda install -c conda-forge poppler
 from pdf2image import convert_from_path
 
-import pytesseract
-from pytesseract import Output
 # Должен быть установлен сторонний пакет Tesseract-OCR
 # Для Ubuntu: sudo apt install tesseract-ocr libtesseract-dev tesseract-ocr-rus
 # Для Windows Tesseract-OCR отсюда: https://github.com/UB-Mannheim/tesseract/wiki
